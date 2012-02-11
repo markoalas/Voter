@@ -7,33 +7,26 @@
 </p>
 #{/if}
 
-<!--<form action="@{Application.sayHello()}" method="GET">-->
-<!--<input type="text" name="myName" />-->
-<!--<input type="submit" value="Say hello!" />-->
-<!--</form>-->
-
 <div class="topics">
     <h3>Topics</h3>
 
     #{list items:topics, as:'topic'}
     <div class="topic">
         <h2 class="topic-title">
-            <a href="#">${topic.title}</a>
+            <a href="@{Application.topic(topic.id)}">${topic.title}</a>
         </h2>
         <div class="topic-metadata">
             <span class="topic-author">
                 by ${topic.author.name}
             </span>
             <span class="topic-date">
-                ${topic.createdAt.format('dd MMM yy')}
+                ${topic.createdAt.format('dd MMM yyyy')}
             </span>
 
             <div class="topic-votes">
+                ${topic.getScore()} point${topic.votes.pluralize()} /
                 ${topic.votes.size() ?: 'no'}
                 vote${topic.votes.pluralize()}
-                #{if topic.votes}
-                - latest by ${topic.votes[-1].user.name}
-                #{/if}
             </div>
         </div>
         <div class="topic-content">

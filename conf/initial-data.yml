@@ -15,7 +15,7 @@ Topic(functionalProgramming):
 
 Topic(innerWorkingsOfJvm):
     title: Inner workings of JVM
-    description: Talk something interesting about Inner workings of JVM
+    description: Talk something interesting about the Inner workings of JVM
     author: bob
     proposedSpeaker: Java experts
     createdAt: 2012-02-02
@@ -24,3 +24,16 @@ Vote(b1):
     user: bob
     topic: functionalProgramming
     createdAt: 2012-02-03
+    value: 1
+
+Vote(b2):
+    user: bob
+    topic: innerWorkingsOfJvm
+    createdAt: 2012-02-03
+    value: -1
+
+Vote(b2):
+    user: jeff
+    topic: innerWorkingsOfJvm
+    createdAt: 2012-02-03
+    value: 1
