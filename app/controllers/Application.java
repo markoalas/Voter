@@ -1,14 +1,18 @@
 package controllers;
 
+import models.Topic;
 import play.data.validation.Required;
 import play.mvc.Controller;
+
+import java.util.List;
 
 import static play.data.validation.Validation.hasErrors;
 
 public class Application extends Controller {
 
     public static void index() {
-        render();
+        List<Topic> topics = Topic.find("order by createdAt desc").fetch();
+        render(topics);
     }
 
 

@@ -1,0 +1,26 @@
+User(bob):
+    name: Bob
+    password: secret
+
+User(jeff):
+    name: Jeff
+    password: secret
+
+Topic(functionalProgramming):
+    title: Functional programming
+    description: Talk something interesting about functional programming
+    author: bob
+    proposedSpeaker: experts
+    createdAt: 2012-02-01
+
+Topic(innerWorkingsOfJvm):
+    title: Inner workings of JVM
+    description: Talk something interesting about Inner workings of JVM
+    author: bob
+    proposedSpeaker: Java experts
+    createdAt: 2012-02-02
+
+Vote(b1):
+    user: bob
+    topic: functionalProgramming
+    createdAt: 2012-02-03
