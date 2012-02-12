@@ -33,19 +33,19 @@ public class Application extends Controller {
         render(topic);
     }
 
-    public static void voteUp(Long id) {
-        vote(id, UP);
-        index();
+    public static void voteUp(Long topicId) {
+        vote(topicId, UP);
     }
 
-    public static void voteDown(Long id) {
-        vote(id, DOWN);
-        index();
+    public static void voteDown(Long topicId) {
+        vote(topicId, DOWN);
     }
 
-    private static void vote(Long id, Vote.Direction direction) {
-        Topic topic = Topic.findById(id);
+    private static void vote(Long topicId, Vote.Direction direction) {
+        Topic topic = Topic.findById(topicId);
         topic.votedBy(getConnectedUser(), direction);
+
+        renderJSON(topic.score);
     }
 
     @Before

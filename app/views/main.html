@@ -11,6 +11,18 @@
         #{get 'moreScripts' /}
     </head>
     <body>
+        <script type="text/javascript">
+            function voteUp(id, container) {
+                var voteAction = #{jsAction @voteUp(':id') /};
+                container.load(voteAction({id: id}));
+            }
+
+            function voteDown(id, container) {
+                var voteAction = #{jsAction @voteDown(':id') /};
+                container.load(voteAction({id: id}));
+            }
+        </script>
+
         <div id="header">
             <a href="@{index()}" class="headerLink">
                 <div id="logo">

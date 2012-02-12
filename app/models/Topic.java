@@ -33,5 +33,6 @@ public class Topic extends Model {
 
     public void votedBy(User user, Vote.Direction direction) {
         Voter.vote(user, this, direction);
+        refresh();
     }
 }
