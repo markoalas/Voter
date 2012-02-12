@@ -1,10 +1,8 @@
-import net.sf.oval.guard.Post;
-import org.junit.*;
-import java.util.*;
-
-import org.junit.experimental.theories.PotentialAssignment;
-import play.test.*;
-import models.*;
+import models.Topic;
+import models.User;
+import org.junit.Before;
+import org.junit.Test;
+import play.test.UnitTest;
 
 import static org.hamcrest.core.Is.is;
 import static play.test.Fixtures.deleteDatabase;
@@ -53,7 +51,7 @@ public class BasicTest extends UnitTest {
     public void vote() {
         topic.save();
 
-        topic.votedBy(mati);
+        topic.votedBy(mati, 1);
 
         assertThat(topic.votes.size(), is(1));
         assertThat(mati.votes.size(), is(1));

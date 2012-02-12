@@ -6,6 +6,9 @@
 GET     /                                       Application.index
 GET     /topic/{id}                             Application.topic
 
+# Import Secure routes
+*       /                                       module:secure
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

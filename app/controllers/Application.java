@@ -2,15 +2,12 @@ package controllers;
 
 import models.Topic;
 import models.User;
-import models.Vote;
-import play.data.validation.Required;
-import play.db.jpa.JPABase;
 import play.mvc.Controller;
+import play.mvc.With;
 
 import java.util.List;
 
-import static play.data.validation.Validation.hasErrors;
-
+@With(Secure.class)
 public class Application extends Controller {
 
     public static void index() {

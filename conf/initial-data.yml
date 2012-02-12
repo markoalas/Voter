@@ -20,19 +20,19 @@ Topic(innerWorkingsOfJvm):
     proposedSpeaker: Java experts
     createdAt: 2012-02-02
 
-Vote(b1):
+Vote(bobVote1):
     user: bob
     topic: functionalProgramming
     createdAt: 2012-02-03
     value: 1
 
-Vote(b2):
+Vote(bobVote2):
     user: bob
     topic: innerWorkingsOfJvm
     createdAt: 2012-02-03
     value: -1
 
-Vote(b2):
+Vote(jeffVote1):
     user: jeff
     topic: innerWorkingsOfJvm
     createdAt: 2012-02-03

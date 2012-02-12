@@ -1,0 +1,44 @@
+#{extends 'main.html' /}
+#{set title:'Topic' /}
+
+#{if flash.error}
+<p style="color:#c00">
+    ${flash.error}
+</p>
+#{/if}
+
+<div class="topics">
+    <h3>Topics</h3>
+
+    <div class="topic">
+        <h2 class="topic-title">
+            <a href="@{Application.topic(topic.id)}">${topic.title}</a>
+            <a href="@{Application.voteUp(topic.id)}">Vote Up</a>
+            <a href="@{Application.voteDown(topic.id)}">Vote Down</a>
+        </h2>
+        <div class="topic-metadata">
+            <span class="topic-author">
+                by ${topic.author.name}
+            </span>
+            <span class="topic-date">
+                ${topic.createdAt.format('dd MMM yyyy')}
+            </span>
+
+            <div class="topic-votes">
+                ${topic.votes.size() ?: 'no'}
+                vote${topic.votes.pluralize()}
+                #{if topic.votes}
+                - latest by ${topic.votes[-1].user.name}
+                #{/if}
+            </div>
+        </div>
+        <div class="topic-content">
+            ${topic.description}
+        </div>
+        <div class="topic-votes">
+        #{list items:topic.votes, as:'vote'}
+            ${vote.user.name}
+        #{/list}
+        </div>
+    </div>
+</div>
