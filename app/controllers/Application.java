@@ -27,9 +27,7 @@ public class Application extends Controller {
     }
 
     public static void saveTopic(@Required @MaxSize(255) String topicTitle, String description, @MaxSize(255) String proposedSpeaker) {
-        System.out.println(topicTitle);
         if (Validation.hasErrors()) {
-            System.out.println(Validation.errors().get(0).getKey());
             params.flash();
             Validation.keep();
             addTopic();
