@@ -2,10 +2,15 @@ package controllers;
 
 import models.Topic;
 import models.User;
+import models.Vote;
+import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
 
 import java.util.List;
+
+import static models.Vote.Direction.DOWN;
+import static models.Vote.Direction.UP;
 
 @With(Secure.class)
 public class Application extends Controller {
@@ -19,27 +24,30 @@ public class Application extends Controller {
         Topic topic = Topic.findById(id);
         render(topic);
     }
-    
+
     public static void voteUp(Long id) {
-        Topic topic = Topic.findById(id);
-        User user = User.find("byName", "Bob").first();
-        topic.votedBy(user, 1);
-        index();
-    }
-    
-    public static void voteDown(Long id) {
-        Topic topic = Topic.findById(id);
-        User user = User.find("byName", "Bob").first();
-        topic.votedBy(user, -1);
+        vote(id, UP);
         index();
     }
 
-//    public static void sayHello(@Required String myName) {
-//        if (hasErrors()) {
-//            flash.error("Oops, please enter your name!");
-//            index();
-//        }
-//
-//        render(myName);
-//    }
+    public static void voteDown(Long id) {
+        vote(id, DOWN);
+        index();
+    }
+
+    private static void vote(Long id, Vote.Direction direction) {
+        Topic topic = Topic.findById(id);
+        topic.votedBy(getConnectedUser(), direction);
+    }
+
+    @Before
+    static void setConnectedUser() {
+        if (Security.isConnected()) {
+            renderArgs.put("user", getConnectedUser().name);
+        }
+    }
+
+    private static User getConnectedUser() {
+        return User.find("byName", Security.connected()).first();
+    }
 }

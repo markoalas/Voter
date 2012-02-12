@@ -11,6 +11,16 @@
         #{get 'moreScripts' /}
     </head>
     <body>
+        <div id="header">
+            <div id="logo">
+                voter <span>${user}</span>
+            </div>
+            <ul id="tools">
+                <li>
+                    <a href="@{Secure.logout()}">Log out</a>
+                </li>
+            </ul>
+        </div>
         #{doLayout /}
     </body>
 </html>
