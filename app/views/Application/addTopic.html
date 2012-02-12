@@ -1,35 +1,35 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-#{if flash.error}
+#{ifErrors}
 <p style="color:#c00">
     ${flash.error}
 </p>
-#{/if}
+#{/ifErrors}
 
 <div class="topics">
     <h3>New topic</h3>
 
     #{form @saveTopic()}
     <p>
-        #{field 'title'}
+        #{field 'topicTitle'}
         <label>Title:</label>
-        <input type="text" name="${field.name}" value="${topic?.title}" />
-        <span class="error">#{error 'topic.title' /}</span>
+        <input type="text" name="${field.name}" value="${field.value}" />
+        <span class="error">#{error 'topicTitle' /} </span>
         #{/field}
     </p>
     <p>
         #{field 'proposedSpeaker'}
         <label>Proposed speaker:</label>
-        <input type="text" name="${field.name}" value="${topic?.proposedSpeaker}" />
-        <span class="error">#{error 'topic.proposedSpeaker' /}</span>
+        <input type="text" name="${field.name}" value="${field.value}" />
+        <span class="error">#{error 'proposedSpeaker' /} </span>
         #{/field}
     </p>
     <p>
         #{field 'description'}
         <label>Description:</label>
-        <textarea name="${field.name}" value="${topic?.description}"></textarea>
-        <span class="error">#{error 'topic.description' /}</span>
+        <textarea name="${field.name}" cols="30" rows="5">${field.value}</textarea>
+        <span class="error">#{error 'description' /} </span>
         #{/field}
     </p>
     <p>

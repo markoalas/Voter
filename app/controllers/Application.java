@@ -3,6 +3,9 @@ package controllers;
 import models.Topic;
 import models.User;
 import models.Vote;
+import play.data.validation.MaxSize;
+import play.data.validation.Required;
+import play.data.validation.Validation;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.mvc.With;
@@ -23,8 +26,16 @@ public class Application extends Controller {
         render();
     }
 
-    public static void saveTopic(String title, String description, String proposedSpeaker) {
-        new Topic(getConnectedUser(), title, description, proposedSpeaker).save();
+    public static void saveTopic(@Required @MaxSize(255) String topicTitle, String description, @MaxSize(255) String proposedSpeaker) {
+        System.out.println(topicTitle);
+        if (Validation.hasErrors()) {
+            System.out.println(Validation.errors().get(0).getKey());
+            params.flash();
+            Validation.keep();
+            addTopic();
+        }
+
+        new Topic(getConnectedUser(), topicTitle, description, proposedSpeaker).save();
         index();
     }
 
