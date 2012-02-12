@@ -1,0 +1,26 @@
+*{ Display a post in one of these modes: 'full', 'home' or 'teaser' }*
+<div class="topic">
+    <h2 class="topic-title">
+        <a href="@{Application.topic(_topic.id)}">${_topic.title}</a>
+    </h2>
+
+    <div class="topic-metadata">
+        <span class="topic-author">
+            by ${_topic.author.name}
+        </span>
+        <span class="topic-date">
+            ${_topic.createdAt.format('dd MMM yyyy')}
+        </span>
+
+        <div class="topic-votes">
+            ${_topic.getScore()} /
+            ${_topic.votes.size() ?: 'no'}
+            vote${_topic.votes.pluralize()}
+            <a href="@{Application.voteUp(_topic.id)}">+</a>
+            <a href="@{Application.voteDown(_topic.id)}">-</a>
+        </div>
+    </div>
+    <div class="topic-content">
+        ${_topic.description}
+    </div>
+</div>

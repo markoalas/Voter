@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{if flash.error}
+<p style="color:#c00">
+    ${flash.error}
+</p>
+#{/if}
+
+<div class="topics">
+    <h3>New topic</h3>
+
+    #{form @saveTopic()}
+    <p>
+        #{field 'title'}
+        <label>Title:</label>
+        <input type="text" name="${field.name}" value="${topic?.title}" />
+        <span class="error">#{error 'topic.title' /}</span>
+        #{/field}
+    </p>
+    <p>
+        #{field 'proposedSpeaker'}
+        <label>Proposed speaker:</label>
+        <input type="text" name="${field.name}" value="${topic?.proposedSpeaker}" />
+        <span class="error">#{error 'topic.proposedSpeaker' /}</span>
+        #{/field}
+    </p>
+    <p>
+        #{field 'description'}
+        <label>Description:</label>
+        <textarea name="${field.name}" value="${topic?.description}"></textarea>
+        <span class="error">#{error 'topic.description' /}</span>
+        #{/field}
+    </p>
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+    #{/form}
+</div>

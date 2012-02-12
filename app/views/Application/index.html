@@ -9,29 +9,10 @@
 
 <div class="topics">
     <h3>Topics</h3>
+    
+    <a href="@{addTopic()}">Suggest new topic</a>
 
-    #{list items:topics, as:'topic'}
-    <div class="topic">
-        <h2 class="topic-title">
-            <a href="@{Application.topic(topic.id)}">${topic.title}</a>
-        </h2>
-        <div class="topic-metadata">
-            <span class="topic-author">
-                by ${topic.author.name}
-            </span>
-            <span class="topic-date">
-                ${topic.createdAt.format('dd MMM yyyy')}
-            </span>
-
-            <div class="topic-votes">
-                ${topic.getScore()} point${topic.votes.pluralize()} /
-                ${topic.votes.size() ?: 'no'}
-                vote${topic.votes.pluralize()}
-            </div>
-        </div>
-        <div class="topic-content">
-            ${topic.description}
-        </div>
-    </div>
+    #{list items:topics, as:'t'}
+        #{displayTopic topic:t /}
     #{/list}
 </div>

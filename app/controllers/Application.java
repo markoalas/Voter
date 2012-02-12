@@ -14,10 +14,18 @@ import static models.Vote.Direction.UP;
 
 @With(Secure.class)
 public class Application extends Controller {
-
     public static void index() {
         List<Topic> topics = Topic.find("order by createdAt desc").fetch();
         render(topics);
+    }
+
+    public static void addTopic() {
+        render();
+    }
+
+    public static void saveTopic(String title, String description, String proposedSpeaker) {
+        new Topic(getConnectedUser(), title, description, proposedSpeaker).save();
+        index();
     }
 
     public static void topic(Long id) {
