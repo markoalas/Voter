@@ -1,5 +1,6 @@
 package models;
 
+import org.hibernate.annotations.Formula;
 import play.db.jpa.Model;
 
 import javax.persistence.*;
@@ -16,8 +17,10 @@ public class Topic extends Model {
     public Date createdAt;
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     public List<Vote> votes;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     public User author;
+    @Formula("select coalesce(sum(v.value), 0) from Vote v where v.topic_id = id")
+    public int score;
 
     public Topic(User author, String title, String description, String proposedSpeaker) {
         this.title = title;
@@ -28,16 +31,7 @@ public class Topic extends Model {
         this.author = author;
     }
 
-    public int getScore() {
-        int total = 0;
-        for (Vote vote : votes) {
-            total += vote.value;
-        }
-
-        return total;
-    }
-
     public void votedBy(User user, Vote.Direction direction) {
-        VoteHandler.vote(user, this, direction);
+        Voter.vote(user, this, direction);
     }
 }

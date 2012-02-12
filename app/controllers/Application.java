@@ -15,7 +15,7 @@ import static models.Vote.Direction.UP;
 @With(Secure.class)
 public class Application extends Controller {
     public static void index() {
-        List<Topic> topics = Topic.find("order by createdAt desc").fetch();
+        List<Topic> topics = Topic.find("order by score desc").fetch();
         render(topics);
     }
 

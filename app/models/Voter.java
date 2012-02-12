@@ -4,7 +4,7 @@ package models;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-public class VoteHandler {
+public class Voter {
     public static void vote(User user, Topic topic, Vote.Direction direction) {
         Vote vote = loadExistingVote(user, topic);
         if (vote == null) {
@@ -35,11 +35,7 @@ public class VoteHandler {
         if (vote.value == 0) {
             deleteVote(user, topic, vote);
         }
-        else {
-            vote.save();
-        }
 
-        user.save();
         topic.save();
     }
 

@@ -38,53 +38,59 @@ public class TopicTest extends UnitTest {
     @Test
     public void voteUp() {
         topic.votedBy(mati, UP);
+        topic.refresh();
 
         assertThat(topic.votes.size(), is(1));
         assertThat(mati.votes.size(), is(1));
-        assertThat(topic.getScore(), is(1));
+        assertThat(topic.score, is(1));
     }
 
     @Test
     public void voteDown() {
         topic.votedBy(mati, DOWN);
+        topic.refresh();
 
         assertThat(topic.votes.size(), is(1));
         assertThat(mati.votes.size(), is(1));
-        assertThat(topic.getScore(), is(-1));
+        assertThat(topic.score, is(-1));
     }
 
     @Test
     public void multipleVotesInSameDirection() {
         topic.votedBy(mati, UP);
         topic.votedBy(mati, UP);
+        topic.refresh();
 
-        assertThat(topic.getScore(), is(1));
+        assertThat(topic.score, is(1));
     }
 
     @Test
     public void voteUpAndDown() {
         topic.votedBy(mati, UP);
         topic.votedBy(mati, DOWN);
+        topic.refresh();
 
         assertThat(topic.votes.size(), is(0));
-        assertThat(topic.getScore(), is(0));
+        assertThat(topic.score, is(0));
     }
 
     @Test
     public void multipleUsersVoteUp() {
         topic.votedBy(mati, UP);
         topic.votedBy(mihkel, UP);
+        topic.refresh();
 
         assertThat(topic.votes.size(), is(2));
-        assertThat(topic.getScore(), is(2));
+        assertThat(topic.score, is(2));
     }
 
     @Test
     public void multipleUsersVoteUpAndDown() {
         topic.votedBy(mati, UP);
         topic.votedBy(mihkel, DOWN);
+        topic.refresh();
 
         assertThat(topic.votes.size(), is(2));
-        assertThat(topic.getScore(), is(0));
+        assertThat(topic.score, is(0));
     }
 }

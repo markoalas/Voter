@@ -545,3 +545,7 @@ tr.odd {
 .hasError {
     background: pink;
 }
+
+.headerLink {
+    text-decoration: none;
+}

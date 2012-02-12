@@ -12,9 +12,11 @@
     </head>
     <body>
         <div id="header">
-            <div id="logo">
-                voter <span>${user}</span>
-            </div>
+            <a href="@{index()}" class="headerLink">
+                <div id="logo">
+                    voter <span>${user}</span>
+                </div>
+            </a>
             <ul id="tools">
                 <li>
                     <a href="@{Secure.logout()}">Log out</a>

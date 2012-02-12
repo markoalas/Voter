@@ -11,16 +11,15 @@
         <span class="topic-date">
             ${_topic.createdAt.format('dd MMM yyyy')}
         </span>
-
         <div class="topic-votes">
-            ${_topic.getScore()} /
-            ${_topic.votes.size() ?: 'no'}
-            vote${_topic.votes.pluralize()}
-            <a href="@{Application.voteUp(_topic.id)}">+</a>
-            <a href="@{Application.voteDown(_topic.id)}">-</a>
+            ${_topic.getScore()}
+            <a href="@{voteUp(_topic.id)}">+1</a>
+            <a href="@{voteDown(_topic.id)}">-1</a>
         </div>
     </div>
-    <div class="topic-content">
-        ${_topic.description}
-    </div>
+    #{if _as == 'full'}
+        <div class="topic-content">
+            ${_topic.description}
+        </div>
+    #{/if}
 </div>
