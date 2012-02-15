@@ -1,4 +1,4 @@
-#{extends 'main.html' /}
+#{extends 'Application/application.html' /}
 #{set title:'Home' /}
 
 #{if flash.error}
@@ -10,7 +10,7 @@
 <div class="topics">
     <h3>Topics</h3>
     
-    <a href="@{addTopic()}">Suggest new topic</a>
+    <a href="@{Topic.addTopic()}">Suggest new topic</a>
 
     #{list items:topics, as:'t'}
         #{displayTopic topic:t/}

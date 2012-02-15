@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/../prodiction/voter" />
-    <output-test url="file://$MODULE_DIR$/../test/voter" />
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$USER_HOME$/play-1.2.4/modules/secure">
       <sourceFolder url="file://$USER_HOME$/play-1.2.4/modules/secure/app" isTestSource="false" />

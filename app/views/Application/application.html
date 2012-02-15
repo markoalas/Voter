@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+
+<script type="text/javascript">
+    function voteUp(id, container) {
+        var voteAction = #{jsAction @voteUp(':id') /};
+        container.load(voteAction({id: id}));
+    }
+
+    function voteDown(id, container) {
+        var voteAction = #{jsAction @voteDown(':id') /};
+        container.load(voteAction({id: id}));
+    }
+</script>
+
+#{doLayout /}
