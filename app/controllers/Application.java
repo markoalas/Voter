@@ -59,12 +59,12 @@ public class Application extends Controller {
 
     @Before
     static void setConnectedUser() {
-        if (Security.isConnected()) {
+        if (Secure.Security.isConnected()) {
             renderArgs.put("user", getConnectedUser().name);
         }
     }
 
     private static User getConnectedUser() {
-        return User.find("byName", Security.connected()).first();
+        return User.find("byName", Secure.Security.connected()).first();
     }
 }
