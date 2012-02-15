@@ -10,7 +10,7 @@
 <div class="topics">
     <h3>Topics</h3>
     
-    <a href="@{Topic.addTopic()}">Suggest new topic</a>
+    <a href="@{Topic.add()}">Suggest new topic</a>
 
     #{list items:topics, as:'t'}
         #{displayTopic topic:t/}
